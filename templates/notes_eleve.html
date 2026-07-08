@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Notes de {{ eleve.prenom }} {{ eleve.nom }}</h1>
+{% if moyenne is not none %}
+  <p class="moyenne">Moyenne générale <span class="stylo">{{ moyenne }}</span> / {{ settings.note_max }}</p>
+{% endif %}
+<table class="notes">
+  <thead><tr><th>Matière</th><th>Évaluation</th><th>Note</th><th>Appréciation</th></tr></thead>
+  <tbody>
+  {% for n in notes %}
+    <tr>
+      <td>{{ n.matiere }}<br><small>{{ n.prof_nom }}</small></td>
+      <td>{{ n.intitule }}</td>
+      <td class="stylo">{{ n.valeur }}</td>
+      <td>
+        {{ n.commentaire }}
+        {% if user.id == eleve.id and settings.contestations_ouvertes %}
+        <details>
+          <summary>Contester cette note</summary>
+          <form method="post" action="{{ url_for('contester', note_id=n.id) }}" class="formulaire">
+            <label>Votre message <textarea name="message" rows="3" required></textarea></label>
+            <button type="submit">Envoyer la contestation</button>
+          </form>
+        </details>
+        {% endif %}
+        <!-- TODO stagiaire : retirer avant la prod ! lien de debug : /notes/{{ n.id }}/modifier -->
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="4">Aucune note pour le moment.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

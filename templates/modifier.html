@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Modifier la note</h1>
+<p class="aide">{{ note.matiere }}, {{ note.intitule }}</p>
+<form method="post" class="formulaire">
+  <label>Note sur {{ settings.note_max }} <input name="valeur" type="number" step="0.5" min="0" max="{{ settings.note_max }}" value="{{ note.valeur }}" required></label>
+  <label>Appréciation <textarea name="commentaire" rows="3">{{ note.commentaire }}</textarea></label>
+  <button type="submit">Enregistrer la note</button>
+</form>
+{% endblock %}

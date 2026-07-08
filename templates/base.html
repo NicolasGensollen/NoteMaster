@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoteMaster · {{ settings.etablissement }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="entete">
+    <a class="logo" href="{{ url_for('index') }}">NoteMaster</a>
+    <span class="etab">{{ settings.etablissement }}, {{ settings.annee_scolaire }}</span>
+    {% if user %}
+      <span class="qui">{{ user.prenom }} {{ user.nom }}</span>
+      <a class="deco" href="{{ url_for('logout') }}">Se déconnecter</a>
+    {% endif %}
+  </header>
+  <main class="page">
+    {% block contenu %}{% endblock %}
+  </main>
+</body>
+</html>

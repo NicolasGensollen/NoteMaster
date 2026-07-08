@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Mes évaluations</h1>
+<form action="{{ url_for('recherche') }}" class="recherche">
+  <label>Chercher un élève <input name="q" placeholder="Nom ou prénom"></label>
+  <button type="submit">Chercher</button>
+</form>
+<table class="notes">
+  <thead><tr><th>Élève</th><th>Évaluation</th><th>Note</th><th></th></tr></thead>
+  <tbody>
+  {% for n in notes %}
+    <tr>
+      <td>{{ n.prenom }} {{ n.nom }}</td>
+      <td>{{ n.matiere }}, {{ n.intitule }}</td>
+      <td class="stylo">{{ n.valeur }}</td>
+      <td><a href="{{ url_for('modifier_note', note_id=n.id) }}">Modifier</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h2>Contestations reçues</h2>
+{% for c in contestations %}
+  <div class="contestation">
+    <p><strong>{{ c.prenom }} {{ c.nom }}</strong> conteste « {{ c.intitule }} »</p>
+    <div class="message">{{ c.message|safe }}</div>
+  </div>
+{% else %}
+  <p class="aide">Aucune contestation. Profitez-en.</p>
+{% endfor %}
+{% endblock %}

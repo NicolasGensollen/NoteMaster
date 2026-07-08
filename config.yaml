@@ -1,0 +1,5 @@
+# Configuration de NoteMaster
+etablissement: "MIRA"
+annee_scolaire: "2026-2027"
+note_max: 20
+contestations_ouvertes: true

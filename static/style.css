@@ -1,0 +1,72 @@
+/* Un cahier à grands carreaux, parce que c'est une école. */
+:root {
+  --papier: #fdfdfb;
+  --carreau: #dbe4f3;
+  --ligne: #b9c8e6;
+  --marge: #d6455b;
+  --encre: #1f3a93;
+  --crayon: #464b57;
+  --stylo-rouge: #c8102e;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--crayon);
+  font: 17px/1.6 "Segoe UI", system-ui, sans-serif;
+  background-color: var(--papier);
+  background-image:
+    linear-gradient(to right, transparent 4.5rem, var(--marge) 4.5rem, var(--marge) calc(4.5rem + 2px), transparent calc(4.5rem + 2px)),
+    linear-gradient(var(--ligne) 1px, transparent 1px),
+    linear-gradient(var(--carreau) 1px, transparent 1px),
+    linear-gradient(90deg, var(--carreau) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 32px, 100% 8px, 32px 32px;
+}
+.entete {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: baseline;
+  padding: 1rem 1.5rem 1rem 6rem;
+  border-bottom: 2px solid var(--encre);
+  background: var(--papier);
+}
+.logo { font: 700 1.6rem/1 "Comic Sans MS", "Chalkboard SE", cursive; color: var(--encre); text-decoration: none; }
+.etab { flex: 1; }
+.qui { color: var(--encre); }
+.page { max-width: 60rem; padding: 2rem 1.5rem 4rem 6rem; }
+h1, h2 { color: var(--encre); font-family: "Comic Sans MS", "Chalkboard SE", cursive; font-weight: 700; }
+h1 { font-size: 2rem; margin: 0 0 1rem; text-decoration: underline var(--marge) 2px; text-underline-offset: 6px; }
+h2 { font-size: 1.4rem; margin-top: 2.5rem; }
+a { color: var(--encre); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--marge); outline-offset: 2px;
+}
+.aide { font-style: italic; }
+.erreur { color: var(--stylo-rouge); font-weight: 600; }
+.stylo { color: var(--stylo-rouge); font: 700 1.3rem "Comic Sans MS", "Chalkboard SE", cursive; }
+.moyenne { font-size: 1.15rem; }
+.moyenne .stylo { font-size: 2rem; }
+.formulaire, .recherche { display: grid; gap: .75rem; max-width: 26rem; margin: 1rem 0; }
+.recherche { grid-template-columns: 1fr auto; align-items: end; max-width: 34rem; }
+label { display: grid; gap: .25rem; }
+input, textarea {
+  font: inherit; color: var(--crayon); padding: .4rem .6rem;
+  border: 1px solid var(--ligne); border-radius: 3px; background: #fff;
+}
+button {
+  font: inherit; font-weight: 600; color: #fff; background: var(--encre);
+  border: 0; border-radius: 3px; padding: .5rem 1rem; cursor: pointer;
+}
+button:hover { background: #16296b; }
+.notes { width: 100%; border-collapse: collapse; background: rgba(255,255,255,.85); }
+.notes th { text-align: left; color: var(--encre); border-bottom: 2px solid var(--encre); padding: .4rem .6rem; }
+.notes td { border-bottom: 1px solid var(--ligne); padding: .6rem; vertical-align: top; }
+.notes small { color: #6b7180; }
+details { margin-top: .4rem; }
+summary { cursor: pointer; color: var(--encre); }
+.contestation { border-left: 4px solid var(--marge); background: rgba(255,255,255,.9); padding: .5rem 1rem; margin: .75rem 0; }
+.resultats { padding-left: 1.2rem; }
+@media (max-width: 40rem) {
+  body { background-image: linear-gradient(var(--ligne) 1px, transparent 1px); background-size: 100% 32px; }
+  .entete, .page { padding-left: 1rem; padding-right: 1rem; }
+  .recherche { grid-template-columns: 1fr; }
+  .notes, .notes tbody, .notes tr, .notes td { display: block; }
+  .notes thead { display: none; }
+}
