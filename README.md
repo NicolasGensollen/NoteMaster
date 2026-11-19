@@ -36,7 +36,7 @@ Ou directement, dans l'environnement virtuel activé :
 python app.py
 ```
 
-L'application est ensuite disponible sur http://localhost:5000. La base de données est créée automatiquement au premier lancement (fichier `notemaster.db`). Supprimez ce fichier pour repartir d'une base propre.
+L'application est ensuite disponible sur http://localhost:5001. La base de données est créée automatiquement au premier lancement (fichier `notemaster.db`). Supprimez ce fichier pour repartir d'une base propre.
 
 ## Comptes de démonstration
 
